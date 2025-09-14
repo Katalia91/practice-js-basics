@@ -1,3 +1,5 @@
+/* Zostawiłam zakomentowane kawałki specjalnie, dla siebie */
+
 // function Student(firstNameVal, lastNameVal) {
 //   this.firstName = firstNameVal;
 //   this.lastName = lastNameVal;
@@ -46,15 +48,26 @@ class StudentOriginal {
     // fn();
     // return;
   }
-  getAverageGrade(arr) {
-    if (arr === undefined) {
-    } else {
-      const numOfElements = arr.length;
-      const sum = arr.reduce(function (acc, currentVal) {
+  getAverageGrade(subject) {
+    const subjectArray = this.grades[subject];
+    if (subject === undefined) {
+      let allGrades = [];
+      for (const subject in this.grades) {
+        allGrades = allGrades.concat(this.grades[subject]);
+      }
+      const arrLength = allGrades.length;
+      const sumOfAllGrades = allGrades.reduce(function (acc, currentVal) {
         return acc + currentVal;
       }, 0);
-      const avg = Math.ceil((sum / numOfElements) * 10) / 10;
+      const avg = Math.ceil((sumOfAllGrades / arrLength) * 100) / 100;
       return avg;
+    } else {
+      const numOfElements = subjectArray.length;
+      const sum = subjectArray.reduce(function (acc, currentVal) {
+        return acc + currentVal;
+      }, 0);
+      const avgOfOne = Math.ceil((sum / numOfElements) * 10) / 10;
+      return avgOfOne;
     }
   }
   get fullName() {
@@ -63,14 +76,11 @@ class StudentOriginal {
   }
 }
 const student = new StudentOriginal("Natalia", "Kur");
-student.getSubject = function () {};
 student.addGrade("maths", 5);
-student.addGrade("maths", 4);
-student.addGrade("english", 5);
-student.addGrade("english", 6);
-student.addGrade("english", 5);
-student.addGrade("biology", 5);
-console.log(student.getAverageGrade(student.grades["maths"]));
-console.log(student.getAverageGrade(student.grades["english"]));
-console.log(student.getAverageGrade(student.grades["biology"]));
-// student.addGrade(6);
+student.addGrade("maths", 5);
+student.addGrade("english", 4);
+student.addGrade("english", 4);
+student.addGrade("english", 4);
+student.addGrade("biology", 3);
+console.log(student.getAverageGrade());
+console.log(student.getAverageGrade("maths"));
