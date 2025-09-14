@@ -10,6 +10,7 @@ const c = randomNumber(min, max);
 console.log(a, b, c);
 
 function getSum(x, y, z) {
+  /* Czy warto się jakoś "ubezpieczyć" na wypadek, gdyby ktoś chciał podstawić np. jakieś słowo jako argument, czyli np. zamiast const c = randomNumber(min, max); byłoby const c = "słoik"? Dostaniemy wówczas informację w konsoli, że Podany argument NaN jest nieparzysty */
   const arr = [Number(x), Number(y), Number(z)];
   const sortedArray = arr.sort(function (a, b) {
     return a - b;
