@@ -48,6 +48,15 @@ class StudentOriginal {
     // fn();
     // return;
   }
+
+  calculateAvg(gradesArray) {
+    const arrLength = gradesArray.length;
+    const sum = gradesArray.reduce(function (acc, currentVal) {
+      return acc + currentVal;
+    }, 0);
+    const avg = Math.ceil((sum / arrLength) * 100) / 100;
+    return avg;
+  }
   getAverageGrade(subject) {
     const subjectArray = this.grades[subject];
     if (subject === undefined) {
@@ -55,19 +64,11 @@ class StudentOriginal {
       for (const subject in this.grades) {
         allGrades = allGrades.concat(this.grades[subject]);
       }
-      const arrLength = allGrades.length;
-      const sumOfAllGrades = allGrades.reduce(function (acc, currentVal) {
-        return acc + currentVal;
-      }, 0);
-      const avg = Math.ceil((sumOfAllGrades / arrLength) * 100) / 100;
+      const avg = this.calculateAvg(allGrades);
       return avg;
     } else {
-      const numOfElements = subjectArray.length;
-      const sum = subjectArray.reduce(function (acc, currentVal) {
-        return acc + currentVal;
-      }, 0);
-      const avgOfOne = Math.ceil((sum / numOfElements) * 10) / 10;
-      return avgOfOne;
+      const avg = this.calculateAvg(subjectArray);
+      return avg;
     }
   }
   get fullName() {
@@ -77,10 +78,10 @@ class StudentOriginal {
 }
 const student = new StudentOriginal("Natalia", "Kur");
 student.addGrade("maths", 5);
-student.addGrade("maths", 5);
-student.addGrade("english", 4);
-student.addGrade("english", 4);
-student.addGrade("english", 4);
-student.addGrade("biology", 3);
-console.log(student.getAverageGrade());
+student.addGrade("maths", 4);
+student.addGrade("english", 6);
+student.addGrade("english", 5);
+student.addGrade("english", 5);
+student.addGrade("biology", 5);
 console.log(student.getAverageGrade("maths"));
+console.log(student.getAverageGrade());
