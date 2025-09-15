@@ -15,6 +15,10 @@ function multiplyNumber() {
 multiplyNumber();
 
 /* rozwiązanie z pętlą while  */
+
+const userDataNumber = getUserInput();
+const userDataPower = getUserInput();
+
 console.log("Pętla while, rozwiązanie pierwsze:");
 function exponentiateNumber(a, n) {
   let str = "";
@@ -31,25 +35,35 @@ function exponentiateNumber(a, n) {
   }
   console.log(`${str} = ${poweredResult}`);
 }
-exponentiateNumber(3, 4);
+exponentiateNumber(userDataNumber, userDataPower);
 
-/* rozwiązanie z pętlą while i prompt() */
-console.log("Pętla while, rozwiązanie drugie:");
-function calculatePower() {
-  const power = 4;
-  const number = prompt("Wybierz liczbę, którą chcesz spotęgować");
-  let str = "";
-  let counter = 0;
-  let poweredResult = 1;
-  while (counter !== power) {
-    poweredResult = poweredResult * number;
-    counter = counter + 1;
-    if (counter === power) {
-      str = str + number;
-    } else {
-      str = `${str}${number} * `;
-    }
-  }
-  console.log(`${str} = ${poweredResult}`);
+/* Pobierane danych od użytkownika */
+function getUserInput() {
+  const userData = prompt(
+    "Wybierz liczbę, którą chcesz spotęgować, a następnie wybierz potęgę."
+  );
+  return Number(userData);
 }
-calculatePower();
+
+/* rozwiązanie z pętlą while i prompt()- postanowiłam połączyć oba rozwiązania */
+
+// console.log("Pętla while, rozwiązanie drugie:");
+// function calculatePower(number, power) {
+//   const power = 4;
+//   const number = 3;
+
+//   let str = "";
+//   let counter = 0;
+//   let poweredResult = 1;
+//   while (counter !== power) {
+//     poweredResult = poweredResult * number;
+//     counter = counter + 1;
+//     if (counter === power) {
+//       str = str + number;
+//     } else {
+//       str = `${str}${number} * `;
+//     }
+//   }
+//   console.log(`${str} = ${poweredResult}`);
+// }
+// calculatePower(n, p);
